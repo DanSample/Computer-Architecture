@@ -1,0 +1,103 @@
+Why different number bases?
+
+Hexadecimal
+- easier to write large numbers
+
+Counting in Hexadecimal
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+A = 10
+B = 11
+C = 12
+D = 13
+E = 14
+F = 15
+10 = 16
+11 = 17
+12 = 18
+13 = 19
+14 = 20
+15 = 21
+16 = 22
+17 = 23
+18 = 24
+19 = 25
+1A = 26
+1B = 27
+1C = 28
+1D = 29
+1E = 30
+1F = 31
+20 = 32
+
+Conversions Hex <--> Decimal
+0x20 --> Decimal
+(2 * 16) + 0 = 32
+
+0x73
+(5 * 16) + 3 --> 112 + 3 = 115
+
+0x5E --> Decimal
+(5 * 16) + 14 = 80 + 14 = 94
+
+95 --> hex 
+95 / 16 --> 0x5F
+
+53 --> hex
+53 / 16 --> 3, then a remainder
+
+0xF --> Decimal
+15
+
+0xFF --> hex
+(15 * 16) + 15 = 255
+
+
+Binary
+-translate electricity into data
+- ternary computer
+- player well with boolean logic
+
+Counting in Binary
+0 = 0
+1 = 1
+10 = 2
+11 = 3
+100 = 4
+101 = 5
+110 = 6 
+111 = 7
+1000 = 8
+1001 = 9
+1010 = 10
+1011 = 11
+1100 = 12
+1101 = 13
+1110 = 14
+1111 = 15
+
+Conversions
+
+25 --> Binary
+0b11001
+
+1001010 --> Decimal
+64 + 8 + 2 = 74
+
+47 --> Binary
+101111
+
+0b1111 --> Decimal
+15
+
+0b1111 1111 - hex
+0xFF
