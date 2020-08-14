@@ -1,8 +1,9 @@
 PRINT_TIM      =  0b00000001
 HALT           =  0b00000010
-PRINT_NUM      =  0b00000011  # command 3
-SAVE           =  0b00000100
-PRINT_REGISTER =  0b00000101
+PRINT_NUM      =  0b01000011  # command 3
+SAVE           =  0b10000100
+PRINT_REGISTER =  0b01000101
+ADD            =  0b10000110
 
 # ADD​
 # Rules of our game
@@ -17,6 +18,12 @@ memory = [
     SAVE, 
     42,  # number to save
     2,   # register to save into
+    SAVE,
+    42, # number to save
+    3,  # into R3
+    ADD, # reg[2] = reg[2] + reg[3]
+    2,
+    3,
     PRINT_REGISTER,
     2,
     HALT,       # <--- PC
@@ -36,29 +43,35 @@ while running:
 
     command = memory[pc]
 
+    num_operands = command >> 6
+
     if command == PRINT_TIM:
         print("Tim!")
 
-        pc += 1
     
     if command == PRINT_NUM:
         number_to_print = memory[pc + 1]
         print(number_to_print)
 
-        pc += 2
 
     if command == SAVE:
         num = memory[pc + 1]
         index = memory[pc + 2]
         registers[index] = num
 
-        pc += 3
 
     if command == PRINT_REGISTER:
         reg_idx = memory[pc + 1]
         print(registers[reg_idx])
 
-        pc += 2 
+
+    if command == ADD:
+        index_one = memory[pc + 1]
+        index_two = memory[pc + 2]
+        registers[index_one] += registers[index_two]
+
 
     if command == HALT:
         running = False
+
+pc += num_operands + 1
