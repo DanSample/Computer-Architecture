@@ -9,6 +9,9 @@ MUL = 0b10100010  # Multiply
 ADD = 0b10100000  # Addition
 SUB = 0b10100001 # Subtraction
 DIV = 0b10100011 # Division
+PUSH = 0b01000101 # Stack Push
+POP = 0b01000110 # Stack Pop
+SP = 7 # Stack pointer
 
 class CPU:
     """Main CPU class."""
@@ -118,6 +121,19 @@ class CPU:
             elif command == MUL:
                 self.reg[operand_a] *= self.reg[operand_b]
                 self.pc += 3
+            elif command == PUSH:
+                self.reg[SP] -= 1
+                stack_address = self.reg[SP]
+                register_number = self.ram_read(self.pc + 1)
+                register_number_value = self.reg[register_number]
+                self.ram_write(stack_address, register_number_value)
+                self.pc += 2
+            elif command == POP:
+                stack_value = self.ram_read(self.reg[SP])
+                register_number = self.ram_read(self.pc + 1)
+                self.reg[register_number] = stack_value
+                self.reg[SP] += 1 
+                self.pc += 2
             else:
                 print(f"{command} at {self.pc} is not valid ")
                 self.pc += 1
